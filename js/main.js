@@ -68,7 +68,9 @@
   }// fin de log out
 
   function addListUser(data) {
-    if (data.val().uid == user.uid) return;
+
+    if (data.val().id == user.id) return;
+    
     var id = data.val().id;
     var $li = $("<li>").addClass("collection-item")
                         .html(data.val().nick)
