@@ -1,0 +1,7 @@
+#users{
+  height: 400px;
+  overflow-y: scroll;
+}
+#chatGeneral{
+  height: 400px;
+}

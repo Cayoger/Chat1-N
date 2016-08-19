@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller firebase</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="./estilos.css" >
+  </head>
+  <body>
+    <div id="modal_nick" class="modal">
+      <div class="modal-content">
+        <h4>Iniciar</h4>
+        <p>Digita el nick con el que apareceras</p>
+        <input type="text" id="inp_nick" placeholder="Nick">
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="waves-effect waves-green btn-flat" id="btn_log_start">Entrar</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col l3">
+          <div class="indigo white-text" style="padding:10px 15px;">
+            Usuarios conectados
+          </div>
+          <ul class="collection" id="users">
+
+          </ul>
+        </div>
+        <div class="col l9">
+          <div class="indigo white-text" style="padding:10px 15px;">
+            Chat
+          </div>
+          <ul class="grey lighten-2 collection" id="chatGeneral">
+
+          </ul>
+          <div class="row">
+            <div class="input-field col l10">
+              <input id="inp_msg" type="text">
+              <label for="inp_msg">Mensage</label>
+            </div>
+            <div class="input-field col l2">
+              <button type="button" class="btn waves-effect waves-light" id="btn_msg">send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="./main.js" charset="utf-8"></script>
+  </body>
+</html>
