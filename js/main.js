@@ -9,12 +9,13 @@
   firebase.initializeApp(config);
   $("#modal_nick").openModal({dismissible: false});
   // variables
-  var fechaHora = new Date();
+  var dt = new Date();
   var db = firebase.database();
   var inp_nick = document.getElementById('inp_nick');
   var btn_log_start = document.getElementById('btn_log_start');
   var inp_msg = document.getElementById('inp_msg');
   var btn_msg = document.getElementById('btn_msg');
+  var ul_chat_g = document.getElementById('chatGeneral');
   var user = {"id":"",nick:""};
   var user_ref = null;
   var user_ref_key = null;
@@ -24,15 +25,13 @@
   window.addEventListener("unload",logOut);
   inp_msg.addEventListener("keypress",keyPressCode);
   btn_msg.addEventListener("click",send);
-
+  ul_chat_g.addEventListener("mouseleave",scrollDown);
   // funciones
   function log() {
     if (inp_nick.value !== "") {
-      $.post('http://webservicechat.mastotal.com/generate_code.php', function(data) {
-        user.id = data;
+        user.id = md5(dt.getTime());
         user.nick = inp_nick.value;
         app();
-      });
     } else {
       var msg = '<span><i class="fa fa-exclamation"></i> No puedes entrar sin nick</span>';
       Materialize.toast(msg, 4000,"white red-text");
@@ -69,7 +68,7 @@
   }// fin de log out
 
   function addListUser(data) {
-    // if (data.val().uid == user.uid) return;
+    if (data.val().id == user.id) return;
     var id = data.val().id;
     var $li = $("<li>").addClass("collection-item")
                         .html(data.val().nick)
@@ -99,10 +98,9 @@
          mensage:msg
        });
      }
-   }
+   }// fin send
 
    function addMsg(data) {
-
      var msg = data.val();
      var html = `<b>${msg.nick}: <b/>
                  <span>${msg.mensage}</span>`;
@@ -111,5 +109,11 @@
                        .html(html);
 
      $("#chatGeneral").append($li);
+     scrollDown();
+   }// fin addMsg
+
+   function scrollDown(){
+     var height = ul_chat_g.scrollHeight;
+     ul_chat_g.scrollTop = height;
    }
 })();
