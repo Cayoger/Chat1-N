@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="./css/estilos.css" >
   </head>
-  <body>
+  <body class="grey lighten-2">
     <div id="modal_nick" class="modal">
       <div class="modal-content">
         <h4>Iniciar</h4>
@@ -19,36 +19,38 @@
         <a href="#!" class="waves-effect waves-green btn-flat" id="btn_log_start">Entrar</a>
       </div>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col l3">
-          <div class="indigo white-text" style="padding:10px 15px;">
-            Usuarios conectados
-          </div>
-          <ul class="collection" id="users">
-
-          </ul>
-        </div>
-        <div class="col l9">
-          <div class="indigo white-text" style="padding:10px 15px;">
-            Chat
-          </div>
-          <ul class="grey lighten-2 collection" id="chatGeneral">
-
-          </ul>
-          <div class="row">
-            <div class="input-field col l10">
-              <input id="inp_msg" type="text">
-              <label for="inp_msg">Mensage</label>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col l3 white card-panel" style="padding-top:1rem;margin-right:10px;">
+            <div class="deep-orange white-text" style="padding:10px 15px;">
+              Usuarios conectados
             </div>
-            <div class="input-field col l2">
-              <button type="button" class="btn waves-effect waves-light" id="btn_msg"><i class="fa fa-send"></i></button>
+            <ul class="collection" id="users">
+
+            </ul>
+          </div>
+          <div class="col l8 white card-panel" style="padding-top:1rem;">
+            <div class="deep-orange white-text" style="padding:10px 15px;">
+              Chat
+            </div>
+            <ul class="grey lighten-2 collection" id="chatGeneral">
+
+            </ul>
+            <div class="row">
+              <div class="input-field col l10">
+                <i class="fa fa-comments prefix"></i>
+                <input id="inp_msg" type="text">
+                <label for="inp_msg">Mensage</label>
+              </div>
+              <div class="input-field col l2">
+                <button type="button" class="btn waves-effect waves-light" id="btn_msg"><i class="fa fa-send"></i></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
