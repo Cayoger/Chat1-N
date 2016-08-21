@@ -7,3 +7,6 @@
   height: 400px;
   overflow-y: scroll;
 }
+li{
+  word-wrap: break-word;
+}

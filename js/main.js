@@ -70,7 +70,7 @@
   function addListUser(data) {
 
     if (data.val().id == user.id) return;
-    
+
     var id = data.val().id;
     var $li = $("<li>").addClass("collection-item")
                         .html(data.val().nick)
@@ -104,13 +104,13 @@
 
    function addMsg(data) {
      var msg = data.val();
-     var html = `<b>${msg.nick}: <b/>
-                 <span>${msg.mensage}</span>`;
+     var html = `<strong>${msg.nick}: </strong><span>${msg.mensage}</span>`;
+     var $li = $("<li>").addClass('collection-item').html(html);
 
-     var $li = $("<li>").addClass('collection-item')
-                       .html(html);
+     $li = user.id == msg.uid ? $li.css({"color":"#1976d2"}) : $li;
 
      $("#chatGeneral").append($li);
+
      scrollDown();
    }// fin addMsg
 
