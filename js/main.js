@@ -16,6 +16,7 @@
   var inp_msg = document.getElementById('inp_msg');
   var btn_msg = document.getElementById('btn_msg');
   var ul_chat_g = document.getElementById('chatGeneral');
+  var sonido = document.getElementById('player');
   var user = {"id":"",nick:""};
   var user_ref = null;
   var user_ref_key = null;
@@ -110,6 +111,8 @@
      $li = user.id == msg.uid ? $li.css({"color":"#1976d2"}) : $li;
 
      $("#chatGeneral").append($li);
+
+     sonido.play();
 
      scrollDown();
    }// fin addMsg
