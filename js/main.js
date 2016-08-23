@@ -1,12 +1,23 @@
 ;(function(){
   // configuracion
+  // var config = {
+  //   apiKey: "AIzaSyAFK-EvCE2vnUVaxK6SgwCaW-Bg_caVEAQ",
+  //   authDomain: "ocapy-b6977.firebaseapp.com",
+  //   databaseURL: "https://ocapy-b6977.firebaseio.com",
+  //   storageBucket: "ocapy-b6977.appspot.com",
+  // };
+  // firebase.initializeApp(config);
+
+  // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyAFK-EvCE2vnUVaxK6SgwCaW-Bg_caVEAQ",
-    authDomain: "ocapy-b6977.firebaseapp.com",
-    databaseURL: "https://ocapy-b6977.firebaseio.com",
-    storageBucket: "ocapy-b6977.appspot.com",
+    apiKey: "AIzaSyDeuOU_-BpTuwIE5heSbvVCEZB4bW-OkQ0",
+    authDomain: "pagina-chat.firebaseapp.com",
+    databaseURL: "https://pagina-chat.firebaseio.com",
+    storageBucket: "pagina-chat.appspot.com",
   };
   firebase.initializeApp(config);
+
+
   $("#modal_nick").openModal({dismissible: false});
   // variables
   var dt = new Date();
@@ -21,6 +32,7 @@
   var user_ref = null;
   var user_ref_key = null;
   var msg_ref = null;
+  var rooms = null;
   // eventos
   btn_log_start.addEventListener("click",log);
   window.addEventListener("unload",logOut);
@@ -42,6 +54,7 @@
   function app() {
     user_ref = db.ref("/user");
     msg_ref = db.ref("/general");
+    rooms = db.ref("/rooms");
 
     logIn();
 
@@ -49,6 +62,8 @@
     user_ref.on('child_removed',removeListUser);
 
     msg_ref.on('child_added', addMsg);
+
+    rooms.on("child_added", newRoom);
   }//fin de app
 
   function logIn(){
@@ -73,10 +88,25 @@
     if (data.val().id == user.id) return;
 
     var id = data.val().id;
+
     var $li = $("<li>").addClass("collection-item")
                         .html(data.val().nick)
                         .attr("id",id)
                         .appendTo("#users");
+
+    $li.on("click", function(){
+        //console.log('Valor de id' + id);
+
+        
+
+        
+          var room = rooms.push({
+            creador: user.id,
+            amigo: id
+          })
+
+          new Chat(room.key, user, "chats", db)
+    })
   }// fin addListUser
 
   function removeListUser(data) {
@@ -121,4 +151,15 @@
      var height = ul_chat_g.scrollHeight;
      ul_chat_g.scrollTop = height;
    }
+
+   function newRoom(data){
+      if (data.val().amigo == user.id){
+        new Chat(data.key, user, "chats", db)
+      }
+
+      // if (data.val().creador == user.uid){
+      //   new Chat(data.key, user, "chats", database)
+      // }
+    }
+
 })();

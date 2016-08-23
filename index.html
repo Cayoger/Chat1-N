@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="./css/estilos.css" >
+    <style>
+       .chat{
+         width: 300px;
+         display: inline-block;
+         margin-right: 1em;
+       }
+       .messages{
+         height: 300px;
+         overflow-y: scroll;
+       }
+  </style>
   </head>
   <body class="grey lighten-2">
     <!-- diego -->
@@ -54,11 +65,36 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+          <div class="col-xs">
+            <div class="box" id="chats">
+              
+            </div>
+          </div>
+      </div>
+
     </main>
+
+    <script type="text/x-custom-tamplate" id="hidden-template">
+      <div class="chat" id="${id}">
+        <ul class="messages collection" style="height:400px;">
+
+        </ul>
+        <form class="form">
+          <input type="text" placeholder="Mensaje" class="mensaje">
+          <input type="submit" class="btn btn-raised indigo white-text" value="Enviar">
+        </form>
+      </div>
+    </script>
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="./js/chat.js"></script>
     <script src="./js/md5.min.js" charset="utf-8"></script>
     <script src="./js/main.js" charset="utf-8"></script>
   </body>
