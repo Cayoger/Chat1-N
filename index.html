@@ -7,47 +7,47 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="./css/estilos.css" >
-    <style>
-       .chat{
-         width: 300px;
-         display: inline-block;
-         margin-right: 1em;
-       }
-       .messages{
-         height: 300px;
-         overflow-y: scroll;
-       }
-  </style>
+    <style media="screen">
+    .chat{
+      width: 300px;
+      display: inline-block;
+    }
+    .messages{
+      height: 300px;
+      overflow-y: scroll;
+    }
+    </style>
   </head>
-  <body class="grey lighten-2">
+  <body>
     <!-- diego -->
     <audio id="player" src="./src/audio/beep.mp3"> </audio>
     <!-- fin diego -->
 
-    <div id="modal_nick" class="modal">
+    <div id="modal_nick" class="modal modal-fixed-footer">
       <div class="modal-content">
         <h4>Iniciar</h4>
         <p>Digita el nick con el que apareceras</p>
         <input type="text" id="inp_nick" placeholder="Nick">
+        <p>Ahora escoge la sala de tu preferencia</p>
+        <select id="sel_sala">
+          <option value="0" disabled selected>Escoge la sala</option>
+          <option value="sala1">Solo Amigos</option>
+          <option value="sala2">Solo solteros</option>
+        </select>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="waves-effect waves-green btn-flat" id="btn_log_start">Entrar</a>
+        <button type="button" class="waves-effect waves-green btn" id="btn_log_start">Acceder</button>
       </div>
     </div>
+
+
     <main>
       <div class="container">
         <div class="row">
-          <div class="col l3 white card-panel" style="padding-top:1rem;margin-right:10px;">
-            <div class="deep-orange white-text" style="padding:10px 15px;">
-              Usuarios conectados
-            </div>
-            <ul class="collection" id="users">
 
-            </ul>
-          </div>
-          <div class="col l8 white card-panel" style="padding-top:1rem;">
-            <div class="deep-orange white-text" style="padding:10px 15px;">
-              Chat
+          <div class="col l8" style="padding-top:1rem;">
+            <div class="green lighten-2 white-text" style="padding:10px 15px;">
+              CHAT: General
             </div>
             <ul class="grey lighten-2 collection" id="chatGeneral">
 
@@ -63,22 +63,29 @@
               </div>
             </div>
           </div>
+          <div class="col l3" style="padding-top:1rem;margin-right:10px;">
+            <div class="green lighten-2 white-text" style="padding:10px 15px;">
+              Usuarios: conectados
+            </div>
+            <ul class="collection" id="users">
+
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div class="row">
-          <div class="col-xs">
-            <div class="box" id="chats">
-              
-            </div>
-          </div>
-      </div>
-
     </main>
+    <div id="chats">
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">First</div>
+          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        </li>
+      </ul>
+    </div>
 
     <script type="text/x-custom-tamplate" id="hidden-template">
       <div class="chat" id="${id}">
-        <ul class="messages collection" style="height:400px;">
+        <ul class="messages collection">
 
         </ul>
         <form class="form">
@@ -89,13 +96,13 @@
     </script>
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="./js/md5.min.js"></script>
     <script src="./js/chat.js"></script>
-    <script src="./js/md5.min.js" charset="utf-8"></script>
-    <script src="./js/main.js" charset="utf-8"></script>
+    <script src="./js/main.js"></script>
+
   </body>
 </html>

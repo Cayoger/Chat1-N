@@ -10,3 +10,12 @@
 li{
   word-wrap: break-word;
 }
+#chats{
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: 0;
+}
