@@ -3,106 +3,109 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocapy chat</title>
+    <title>Prototypo</title>
+    <!-- <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <link rel="stylesheet" href="./css/estilos.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/flexboxgrid/6.3.0/flexboxgrid.min.css" type="text/css" >
     <style media="screen">
-    .chat{
-      width: 300px;
-      display: inline-block;
-    }
-    .messages{
-      height: 300px;
-      overflow-y: scroll;
-    }
+      #chats{
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        left: auto;
+        right: 0;
+      }
+      #salas{
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 10;
+      }
+      #home{
+      }
+      #users{
+        height: 400px;
+        overflow-y: scroll;
+      }
+      #ul_room{
+        height: 400px;
+        overflow-y: scroll;
+      }
+      li{
+        word-wrap: break-word;
+      }
     </style>
   </head>
   <body>
-    <!-- diego -->
-    <audio id="player" src="./src/audio/beep.mp3"> </audio>
-    <!-- fin diego -->
+    <!-- inicia salas -->
+    <div id="salas" class="row center-xs middle-xs white">
+      <div class="col-xs-4">
+        <div class="box">
+            seleccione una sala
+          <div class="collection" id="ul_salas">
 
-    <div id="modal_nick" class="modal modal-fixed-footer">
-      <div class="modal-content">
-        <h4>Iniciar</h4>
-        <p>Digita el nick con el que apareceras</p>
-        <input type="text" id="inp_nick" placeholder="Nick">
-        <p>Ahora escoge la sala de tu preferencia</p>
-        <select id="sel_sala">
-          <option value="0" disabled selected>Escoge la sala</option>
-          <option value="sala1">Solo Amigos</option>
-          <option value="sala2">Solo solteros</option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="waves-effect waves-green btn" id="btn_log_start">Acceder</button>
-      </div>
-    </div>
-
-
-    <main>
-      <div class="container">
-        <div class="row">
-
-          <div class="col l8" style="padding-top:1rem;">
-            <div class="green lighten-2 white-text" style="padding:10px 15px;">
-              CHAT: General
-            </div>
-            <ul class="grey lighten-2 collection" id="chatGeneral">
-
-            </ul>
-            <div class="row">
-              <div class="input-field col l10">
-                <i class="fa fa-comments prefix"></i>
-                <input id="inp_msg" type="text">
-                <label for="inp_msg">Mensage</label>
-              </div>
-              <div class="input-field col l2">
-                <button type="button" class="btn waves-effect waves-light" id="btn_msg"><i class="fa fa-send"></i></button>
-              </div>
-            </div>
-          </div>
-          <div class="col l3" style="padding-top:1rem;margin-right:10px;">
-            <div class="green lighten-2 white-text" style="padding:10px 15px;">
-              Usuarios: conectados
-            </div>
-            <ul class="collection" id="users">
-
-            </ul>
           </div>
         </div>
       </div>
-    </main>
-    <div id="chats">
-      <ul class="collapsible" data-collapsible="accordion">
-        <li>
-          <div class="collapsible-header">First</div>
-          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-        </li>
-      </ul>
     </div>
-
-    <script type="text/x-custom-tamplate" id="hidden-template">
-      <div class="chat" id="${id}">
-        <ul class="messages collection">
-
-        </ul>
-        <form class="form">
-          <input type="text" placeholder="Mensaje" class="mensaje">
-          <input type="submit" class="btn btn-raised indigo white-text" value="Enviar">
-        </form>
+    <!-- fin -->
+    <!-- home -->
+    <div class="row center-xs" id="home">
+      <div class="col-xs-2">
+        <div class="box">
+          <div class="green lighten-2 white-text" style="padding:10px 15px;">
+            Usuarios: conectados
+          </div>
+          <ul class="collection" id="ul_users">
+            <li class="collection-item active">General</li>
+          </ul>
+        </div>
       </div>
-    </script>
+      <div class="col-xs-7" id="room">
+        <div class="box">
+          <div id="titulo_room" class="green lighten-2 white-text" style="padding:10px 15px;">
+            CHAT: General
+          </div>
+          <ul class="left-align grey lighten-2 collection" id="ul_room">
 
+          </ul>
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="box">
+                <input id="inp_msg" type="text" placeholder="Mensage">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="box">
+                <button type="button" class="left btn waves-effect waves-light" id="btn_msg"><i class="fa fa-send"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fin  -->
+    <!-- modal nick open -->
+      <div id="modal_nick" class="modal">
+        <div class="modal-content">
+          <h4>Iniciar</h4>
+          <p>Digita el nick con el que apareceras</p>
+          <input type="text" id="inp_nick" placeholder="Nick">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="waves-effect waves-green btn" id="btn_access">Acceder</button>
+        </div>
+      </div>
+    <!-- fin -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script src="./js/md5.min.js"></script>
-    <script src="./js/chat.js"></script>
-    <script src="./js/main.js"></script>
-
+    <script src="js/md5.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

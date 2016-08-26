@@ -1,55 +1,42 @@
-class Chat{
-	constructor(roomKey, user, containerID, database){
-		this.user = user
-		this.id = roomKey
-		this.database = database
-		this.buildChat(containerID)
-		//mandar mensajes
-		this.setEvents()
-	}
+class Chat {
+  constructor(room_key,user,contenedor_id,db) {
+    this.user = user;
+    this.id = room_key;
+    this.db = db;
+    this.buildChat(contenedor_id);
+    this.setEvents();
+  }
+  buildChat(contenedor_id){
+    $.tmpl($("#hidden-template"),{id:this.id}).appendTo('#'+contenedor_id);
+    this.ref = this.db.ref(this.user.sala+"/message/"+this.id);
+  }
+  setEvents(){
+    $("#"+this.id).find("form").on("submit",(item) => {
+      item.preventDefault();
+      var msg = $(item.target).find(".mensage").val();
+      this.send(msg);
 
-	buildChat(containerID){
-		$.tmpl($("#hidden-template"), {id: this.id})
-		.appendTo("#"+containerID)
+      return false;
+    });
 
-		//mandar mensajes
-		this.ref = this.database.ref("/messages"+this.id)
-	}
+    this.ref.on("child_added",(data)=>this.addMensajes(data));
+  }
 
-	setEvents(){
-		$("#"+this.id).find("form").on("submit", (ev)=>{
-			ev.preventDefault()
+  addMensajes(data){
+    var msg = data.val();
+    var html = `<b>${msg.name}: <b/>
+                <span>${msg.mensaje}</span>`;
 
-			var msg = $(ev.target).find(".mensaje").val()
-			this.send(msg)
+    var $li = $("<li>").addClass('collection-item')
+                      .html(html);
 
-			return false
-		})
-
-		//Mostrar mensajes
-		this.ref.on("child_added",(data)=> this.add(data) )
-	}
-
-	//mostrar mensajes
-	add(data){
-		var mensaje = data.val()
-		//template string
-		var html = `
-						<b> ${ mensaje.name } :</b>
-						<span> ${mensaje.msg} </span>
-					`
-		var $li = $("<li>").addClass('collection-item')
-								.html(html)
-
-		$("#"+this.id).find(".messages").append($li)
-	}
-
-	send(msg){
-		this.ref.push({
-			name: this.user.nick,
-			roomID: this.id,
-			msg: msg
-		})
-	}
-
+    $("#"+this.id).find(".messages").append($li);
+  }
+  send(msg){
+    this.ref.push({
+      name: this.user.nick,
+      room_id: this.id,
+      mensaje: msg
+    });
+  }
 }

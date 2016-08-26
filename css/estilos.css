@@ -19,3 +19,9 @@ li{
   left: auto;
   right: 0;
 }
+#salas{
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+}
